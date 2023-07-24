@@ -1,0 +1,19 @@
+body {
+    margin: 0;
+    /* display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    
+    background-image: url("../assets/air/boatimg.png");
+
+    background-repeat: no-repeat;
+    background-size: cover; */
+}
+
+
+#wind{
+    position: fixed;
+    z-index: 1;
+}

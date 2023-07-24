@@ -1,0 +1,73 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    
+    background-image: url("indeximg.jpg");
+
+    /* Adjust the background properties as needed */
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+
+#spellCheckForm {
+    display: grid;
+    justify-content: center;
+    margin-left: -35vw;
+    grid-template-columns: repeat(2, 200px); /* Adjust the width as needed */
+    gap: 10px; /* Adjust the gap between the boxes as needed */
+    text-align: center;
+    margin-top: 80vh;
+    z-index: 999;
+}
+
+.wordInput {
+    width: 90%;
+    padding: 10px;
+    font-size: 16px;
+}
+
+#results {
+    position: absolute;
+    text-align: left;
+    margin-top: 80vh;
+    margin-left: 45vw;
+    z-index: 999;
+    color: red;
+    font-size: 20px;
+}
+
+.images {
+    position: fixed;
+    display: grid;
+    grid-template-columns: repeat(2,2fr);
+    grid-gap: 35vw 140vh;
+    margin-left: 0vw;
+    margin-top: 0vh;
+    width: auto;
+    height: auto;
+}
+
+.images img {
+    width: 100px;
+}
+
+
+
+.titleImg {
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    margin-top: -50vh;
+    margin-right: 10vw;
+    align-items: center;
+    height: 200px;
+}
+
+.titleImg img {
+    width: 50%;
+    height: auto;
+}

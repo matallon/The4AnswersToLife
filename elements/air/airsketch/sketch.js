@@ -1,25 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-      <meta charset="utf-8">
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <link rel="stylesheet" href="../../CSS/air.css">
-      <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.6.0/p5.js"></script>
-      <title>Air</title>
-
-
-      <!-- <script src="../air/airsketch/sketch.js"></script> -->
-    
-    </head>
-
-    <body>
-
-        <script>
 
 let circles = [];
 let rectangleFill = 0;
-const rectangleMaxFill = 250;
+const rectangleMaxFill = 200;
 
 function preload() {
   // Load the background image
@@ -38,7 +20,7 @@ function draw() {
   image(bgImage, 0, 0, width, height);
 
   fill(0, 100, 200, rectangleFill);
-  rect(20, height - 120, 200, 100);
+  rect(width / 2 - 100, height / 2 - 50, 200, 100);
   fill(0);
 
   for (let i = 0; i < circles.length; i++) {
@@ -48,9 +30,9 @@ function draw() {
 
   if (rectangleFill >= rectangleMaxFill) {
     fill(0);
-    textSize(50);
+    textSize(30);
     textAlign(CENTER, CENTER);
-    text('o2', 110, height -70);
+    text('o2', width / 2, height / 2);
   }
 }
 
@@ -58,7 +40,7 @@ function mousePressed() {
   for (let i = circles.length - 1; i >= 0; i--) {
     if (circles[i].contains(mouseX, mouseY)) {
       circles.splice(i, 1);
-      rectangleFill += 25;
+      rectangleFill += 10;
     }
   }
 }
@@ -86,9 +68,6 @@ class Circle {
   }
 
   display() {
-    fill(100,100,100,150);
-    stroke(200,0,100);
-    strokeWeight(2);
     ellipse(this.x, this.y, this.radius * 2);
   }
 
@@ -97,12 +76,4 @@ class Circle {
     return d < this.radius;
   }
 }
-
-
-        </script>
-
-
-        <!-- <canvas id="wind"></canvas> -->
-    </body>
-
 

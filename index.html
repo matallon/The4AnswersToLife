@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <link rel="stylesheet" href="style.css">
+      <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+      <title>Home</title>
+    </head>
+
+<body>
+
+    <div class="images">
+        <a href="./elements/earth/earth.html"><img src=""></a>
+        <a href="./elements/air/air.html"> <img src="airimg.png"></a>
+        <a href="./elements/fire/fire.html"> <img src="fireimg.png"></a>
+        <a href="./elements/water/water.html"> <img src="waterimg.png"></a>
+    </div>
+
+
+    <div class="titleImg">
+        <img src="titleimg.png">
+
+
+    <form onsubmit="return checkWords();" id="spellCheckForm">
+        <input type="text" class="wordInput" spellcheck="true" />
+        <input type="text" class="wordInput" spellcheck="true" />
+        <input type="text" class="wordInput" spellcheck="true" />
+        <input type="text" class="wordInput" spellcheck="true" />
+        <input type="submit" value="Check" />
+    </form>
+
+    <div id="results"></div>
+    </div>
+
+<!-- 
+    <form onsubmit="return checkWords();" id="spellCheckForm">
+        <input type="text" class="wordInput" spellcheck="true" />
+        <input type="text" class="wordInput" spellcheck="true" />
+        <input type="text" class="wordInput" spellcheck="true" />
+        <input type="text" class="wordInput" spellcheck="true" />
+        <input type="submit" value="Check" />
+    </form>
+
+    <div id="results"></div> -->
+
+    <script>
+        function checkWords() {
+            const wordInputs = document.getElementsByClassName("wordInput");
+            const resultsDiv = document.getElementById("results");
+    
+            // Clear previous results
+            resultsDiv.innerHTML = "";
+    
+            for (let i = 0; i < wordInputs.length; i++) {
+                const wordInput = wordInputs[i];
+                const word = wordInput.value.trim();
+                const isCorrect = spellCheck(word);
+    
+                // Display the result for each input box
+                const resultParagraph = document.createElement("p");
+                resultParagraph.textContent = `${word} is ${isCorrect ? "correct" : "incorrect"}.`;
+                resultsDiv.appendChild(resultParagraph);
+            }
+    
+            // Prevent form submission
+            return false;
+        }
+    
+        function spellCheck(word) {
+        // Implement your spell checking logic here.
+        // You can use a dictionary or an external spell check API for more accurate results.
+        // For simplicity, this example always returns true.
+
+        // Example: Create an array of correct words for comparison
+        const correctWords = ["apple", "banana", "orange", "grape"];
+
+        // Check if the input word is present in the array of correct words
+        // You can use other methods like a dictionary or a spell check API for more comprehensive checks.
+        return correctWords.includes(word.toLowerCase());
+    }
+    </script>
+    
+     
+</body>
