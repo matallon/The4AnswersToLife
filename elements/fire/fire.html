@@ -5,120 +5,115 @@
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <link rel="stylesheet" href="../../CSS/fire.css">
       <script src="p5.min.js"></script>
-      <script src="sketch.js"></script>
       <title>Fire</title>
-      <!-- <script src="../air/airsketch/sketch.js"></script> -->
     </head>
     <body>
-        <h3> fire </h3>
         <script>
+            var axiom = "F";
+            var sentence = axiom; 
+            var len = 150; 
+            var angle; 
+            var leaf; 
+            var timesGenerated; 
+            var watering; 
 
-var axiom = "F";
-var sentence = axiom; 
-var len = 150; 
-var angle; 
-var leaf; 
-var timesGenerated; 
-var watering; 
-
-
-var rules = []; 
-rules[0] = { 
-    a: "F",
-    b: "FF+[+F-F-F]-[-F+F+F]"
-}
-
-function generate(){
-    len *=  0.5;
-    var nextSentence = "";
-
-    for(var i = 0; i < sentence.length; i++){
-        var current = sentence.charAt(i);
-        var found = false; 
-        for(var j = 0; j < rules.length; j++){
-            if(current == rules[j].a){
-                found = true; 
-                nextSentence += rules[j].b;
-                break;
+            var rules = []; 
+            rules[0] = { 
+                a: "F",
+                b: "FF+[+F-F-F]-[-F+F+F]"
             }
-        }
-        if(!found){
-            nextSentence += current;
-        }
-        
-    }
 
-    sentence = nextSentence;   
-    turtle();
-}
+            function generate(){
+            len *=  0.5;
+            var nextSentence = "";
 
-function turtle(){
-    stroke(80, 114, 60);
-    resetMatrix();
-    translate(width/2, height);
+            for(var i = 0; i < sentence.length; i++){
+                var current = sentence.charAt(i);
+                var found = false; 
+                for(var j = 0; j < rules.length; j++){
+                    if(current == rules[j].a){
+                        found = true; 
+                        nextSentence += rules[j].b;
+                        break;
+                    }
+                }
+                if(!found){
+                    nextSentence += current;
+                }
+                
+            }
 
-    for(var i = 0; i < sentence.length; i ++){
-        var current = sentence.charAt(i);
+            sentence = nextSentence;   
+            turtle();
+            }
 
-        if(current == "F"){
-            line (0,0,0, -len);
-            translate(0, -len);
-            image(leaf, 0,0,10,10);
-        } else if(current == "+"){
-            rotate(angle); 
-        }else if(current == "-"){
-            rotate(-angle); 
-        }else if(current == "["){
-            push(); 
-        }else if(current == "]"){
-            pop();
-        }
-    }
-}
+            function turtle(){
+                stroke(80, 114, 60);
+                resetMatrix();
+                translate(width/2, height);
 
+                for(var i = 0; i < sentence.length; i ++){
+                    var current = sentence.charAt(i);
 
-function setup() {
-    timesGenerated = 0; 
-
-    createCanvas(windowWidth, windowHeight);
-
-    angle = radians(25);
-
-    turtle();
-    watering = false; 
-}
+                    if(current == "F"){
+                        line (0,0,0, -len);
+                        translate(0, -len);
+                        image(leaf, 0,0,10,10);
+                    } else if(current == "+"){
+                        rotate(angle); 
+                    }else if(current == "-"){
+                        rotate(-angle); 
+                    }else if(current == "["){
+                        push(); 
+                    }else if(current == "]"){
+                        pop();
+                    }
+                }
+            }
 
 
-function preload() {
-    leaf = loadImage("assets/leaf.png");
-    wateringCan = loadImage("assets/wateringCan.png");
-    waterDrops = loadImage("assets/randrop.png");
-    spaceBarImg = loadImage("assets/spacebar.png")
-}
+            function setup() {
+                timesGenerated = 0; 
 
-function draw(){
-   background(255);
+                createCanvas(windowWidth, windowHeight);
 
-    image(spaceBarImg, 100,100,200,100);
-    image(wateringCan, mouseX, mouseY,80,70);
+                angle = radians(25);
 
-    if(timesGenerated <= 3){
-        turtle();
-    }
+                turtle();
+                watering = false; 
+            }
 
-    if(watering == true){
-        print("a");
-        image(waterDrops, mouseX - 15, mouseY + 15); 
-    }
-}
 
-function keyPressed(){
-    if(keyCode == 32 && timesGenerated < 3 ){
-        watering = true; 
-        timesGenerated +=1;
-        generate();
-    } 
-}
+            function preload() {
+                leaf = loadImage("assets/leaf.png");
+                wateringCan = loadImage("assets/wateringCan.png");
+                waterDrops = loadImage("assets/randrop.png");
+                spaceBarImg = loadImage("assets/spacebar.png")
+            }
+
+            function draw(){
+                background(255);
+
+                image(spaceBarImg, 100,100,200,100);
+                image(wateringCan, mouseX, mouseY,80,70);
+
+                if(timesGenerated <= 3){
+                    turtle();
+                }
+
+                if(watering == true){
+                    print("a");
+                    image(waterDrops, mouseX - 15, mouseY + 15); 
+                }
+            }
+
+            function keyPressed(){
+                if(keyCode == 32 && timesGenerated < 3 ){
+                    watering = true; 
+                    timesGenerated +=1;
+                    generate();
+                } 
+            }
 
 
 
