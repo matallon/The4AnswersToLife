@@ -93,7 +93,7 @@ function draw(){
 
     if(watering == true){
         resetMatrix();
-        image(waterDrops, mouseX, mouseY + (frameCount * 0.9),30,30); 
+        image(waterDrops, mouseX, mouseY + frameCount *3,30,30); 
     }
 }
 
@@ -105,3 +105,6 @@ function keyPressed(){
     } 
 }
 
+function keyReleased(){
+    watering = false;
+}
