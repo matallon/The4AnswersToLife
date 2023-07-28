@@ -5,7 +5,9 @@ body {
     height: 100vh;
     margin: 0;
     
-    background-image: url("indeximg.jpg");
+    /* background-image: url("indeximg.jpg"); */
+    background-image: url("withoutlines.PNG");
+
 
     /* Adjust the background properties as needed */
     background-repeat: no-repeat;

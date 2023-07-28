@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <link rel="stylesheet" href="../../CSS/water.css">
+      <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.6.0/p5.js"></script>
+
+      <title>water</title>
+    </head>
+    <body>
+      <script>
+let bgImage, personRightImage, personLeftImage, raindropImage;
+let personX, personY;
+let bucketX, bucketY, bucketWidth, bucketHeight;
+let rectangleFill = 0;
+const rectangleMaxFill = 255;
+let raindrops = [];
+let bucketFillLevel = 0;
+let bucketheightGrow = 0;
+let showText = false;
+
+function preload() {
+  bgImage = loadImage("grayImg.jpg");
+  personRightImage = loadImage("rainPerson.png");
+  personLeftImage = loadImage("rainPersonLeft.png");
+  raindropImage = loadImage("raindrop.png");
+  
+}
+
+function setup() {
+  createCanvas(windowWidth, 900);
+  personX = width / 2;
+  personY = height - personRightImage.height;
+  bucketWidth = 70;
+  bucketHeight = 70;
+  bucketX = personX + personRightImage.width / 1.2 ;
+  bucketY = personY + 80;
+  
+  raindropImage.resize(20,30);
+}
+
+function draw() {
+  image(bgImage, 0, 0, width, height);
+
+  // Draw person
+  if (keyIsPressed) {
+    if (keyCode === RIGHT_ARROW && personX < width - 120) {
+      image(personRightImage, personX, personY);
+      personX += 5;
+      bucketX += 5;
+    } else if (keyCode === LEFT_ARROW && personX > 0) {
+      image(personRightImage, personX, personY);
+      personX -= 5;
+      bucketX -= 5;
+    }
+  } else {
+    // Draw person without movement
+    image(personRightImage, personX, personY);
+  }
+
+  // Draw bucket
+  noFill();
+  rect(bucketX, bucketY, bucketWidth, bucketHeight);
+  
+  fill(0,100,200, rectangleFill);
+  stroke(0,0,0);
+  rect(bucketX, bucketY + bucketHeight - bucketheightGrow, bucketWidth, bucketheightGrow);
+
+  // Spawn raindrops
+  if (random(1) < 0.1) {
+    let newRaindrop = createVector(random(width), 0);
+    raindrops.push(newRaindrop);
+  }
+
+  // Draw and update raindrops
+  for (let i = raindrops.length - 1; i >= 0; i--) {
+    let raindrop = raindrops[i];
+    raindrop.y += 2; // Speed of the raindrop falling
+    image(raindropImage, raindrop.x, raindrop.y);
+    
+    // Check if raindrop is caught in the bucket
+    if (raindrop.x >= bucketX && raindrop.x <= bucketX + bucketWidth &&
+        raindrop.y >= bucketY && raindrop.y <= bucketY + bucketHeight) {
+      // Remove the raindrop from the array
+      raindrops.splice(i, 1);
+      // Increase the bucket's fill level
+      bucketFillLevel++;
+      rectangleFill += 10;
+      bucketheightGrow += 40; //is actually 2
+    }
+    
+    if(bucketheightGrow >= bucketHeight){
+      bucketheightGrow = bucketHeight;
+      fill(0);
+      textSize(45);
+      textAlign(CENTER, CENTER);
+      text('aaahhquaaaarhhh', width/2, height -70);
+      showText = true;
+      
+      noFill();
+      stroke(255,0,0);
+      rect(width/2.6, height - 90, 400, 50);
+    }
+
+    // Check if raindrop is off-screen
+    if (raindrop.y > height) {
+      // Remove the raindrop from the array
+      raindrops.splice(i, 1);
+    }
+  }
+}
+
+function mousePressed() {
+  if (showText && mouseX > width/2.6 && mouseX < width/2.6 + 400
+     && mouseY > height - 90 && mouseY < (height-90) + 50) {
+            window.open("waterFinal.html", "_blank"); // Open new page in a new tab
+  }
+}
+
+
+      </script>
+
+      </body>
+      </html>
