@@ -68,15 +68,8 @@
         }
     
         function spellCheck(word) {
-        // Implement your spell checking logic here.
-        // You can use a dictionary or an external spell check API for more accurate results.
-        // For simplicity, this example always returns true.
+                const correctWords = ["apple", "banana", "orange", "grape"];
 
-        // Example: Create an array of correct words for comparison
-        const correctWords = ["apple", "banana", "orange", "grape"];
-
-        // Check if the input word is present in the array of correct words
-        // You can use other methods like a dictionary or a spell check API for more comprehensive checks.
         return correctWords.includes(word.toLowerCase());
     }
     </script>

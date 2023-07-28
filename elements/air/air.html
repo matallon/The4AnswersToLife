@@ -20,6 +20,7 @@
 let circles = [];
 let rectangleFill = 0;
 const rectangleMaxFill = 250;
+let showText = false; 
 
 function preload() {
   // Load the background image
@@ -51,16 +52,21 @@ function draw() {
     textSize(50);
     textAlign(CENTER, CENTER);
     text('o2', 110, height -70);
+    showText = true;
   }
 }
 
 function mousePressed() {
+  if (showText && mouseX >= 20 && mouseX <= 220 && mouseY >= height - 120 && mouseY <= height - 20) {
+            window.open("instruments.html", "_blank"); // Open new page in a new tab
+          } else {
   for (let i = circles.length - 1; i >= 0; i--) {
     if (circles[i].contains(mouseX, mouseY)) {
       circles.splice(i, 1);
       rectangleFill += 25;
     }
   }
+}
 }
 
 class Circle {
