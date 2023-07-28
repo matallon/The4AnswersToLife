@@ -6,6 +6,7 @@ var angle;
 var leaf; 
 var timesGenerated; 
 var watering; 
+var button;
 
 
 var rules = []; 
@@ -62,7 +63,6 @@ function turtle(){
     }
 }
 
-
 function setup() {
     timesGenerated = 0; 
 
@@ -89,6 +89,13 @@ function draw(){
 
     if(timesGenerated <= 3){
         turtle();
+    } 
+    
+    if (timesGenerated == 3){
+        print("yes");
+        button = createButton('HERE YOU ARE');
+        button.position(width/2, height/2);
+        button.mousePressed(nextPage);
     }
 
     if(watering == true){
@@ -107,4 +114,8 @@ function keyPressed(){
 
 function keyReleased(){
     watering = false;
+}
+
+function nextPage(){
+    window.open('landscapes.html');
 }
