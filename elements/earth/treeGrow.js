@@ -92,7 +92,6 @@ function draw(){
     } 
     
     if (timesGenerated == 3){
-        print("yes");
         button = createButton('HERE YOU ARE');
         button.position(width/2, height/2);
         button.mousePressed(nextPage);
